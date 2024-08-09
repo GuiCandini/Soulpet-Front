@@ -19,7 +19,7 @@ function NovoPet() {
 
   function salvarPet(data) {
     if(data.dataNasc === "") data.dataNasc = null;
-    
+
     addPet(data).then((resposta) => {
       toast.success(resposta.message);
       navigate("/pets");
@@ -37,6 +37,8 @@ function NovoPet() {
   useEffect(() => {
     carregarClientes();
   }, []);
+
+  // 2º -> Pegar os dados do formulário e enviar para o backend
 
   return (
     <main className="mt-4 container">
@@ -97,13 +99,13 @@ function NovoPet() {
             className="form-select"
             {...register("clienteId", { required: true, valueAsNumber: true })}
           >
-            <option selected disabled>Selecione um cliente</option>
+            <option value="">Selecione um cliente</option>
             {clientes.map((cliente) => {
               return (
                 <option key={cliente.id} value={cliente.id}>
                   {cliente.nome} - {cliente.email}
                 </option>
-              )
+              );
             })}
           </select>
           {errors.clienteId && (

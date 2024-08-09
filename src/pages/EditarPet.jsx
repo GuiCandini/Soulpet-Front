@@ -23,7 +23,6 @@ function EditarPet() {
       toast.success(resposta.message);
       navigate("/pets");
     })
-    
   }
 
   function carregarPet() {

@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { deletePet, getPets } from "../api/pets";
-import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
 import toast from "react-hot-toast";
 
 function Pets() {
-  const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState(null);
 
   function carregarPets() {
     getPets().then((dados) => {
@@ -16,11 +16,12 @@ function Pets() {
 
   function deletarPet(id) {
     const deletar = confirm("Tem certeza que deseja excluir?");
-    if(deletar) {
+
+    if (deletar) {
       deletePet(id).then((resposta) => {
         toast.success(resposta.message);
         carregarPets();
-      })
+      });
     }
   }
 
@@ -53,14 +54,18 @@ function Pets() {
                   <td>{pet.nome}</td>
                   <td>{pet.tipo}</td>
                   <td>{pet.porte}</td>
-                  <td>{pet.dataNasc ? new Date(pet.dataNasc+"T00:00:00").toLocaleDateString() : "-"}</td>
+                  <td>
+                    {pet.dataNasc
+                      ? new Date(
+                          pet.dataNasc + "T00:00:00"
+                        ).toLocaleDateString()
+                      : "-"}
+                  </td>
                   <td>
                     <Button className="m-1" variant="danger" size="sm" onClick={() => deletarPet(pet.id)}>
                       Excluir
                     </Button>
-                    <Button size="sm" as={Link} to={`/pets/editar/${pet.id}`}>
-                      Editar
-                    </Button>
+                    <Button size="sm" as={Link} to={`/pets/editar/${pet.id}`}>Editar</Button>
                   </td>
                 </tr>
               );
@@ -73,6 +78,5 @@ function Pets() {
     </main>
   );
 }
-
 
 export default Pets;
