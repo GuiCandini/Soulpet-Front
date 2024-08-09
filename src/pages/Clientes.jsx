@@ -6,7 +6,7 @@ import Loader from "../components/Loader";
 import toast from "react-hot-toast";
 
 function Clientes() {
-  const [clientes, setClientes] = useState(null);
+  const [clientes, setClientes] = useState([]);
 
   function carregarClientes() {
     getClientes().then((dados) => {
