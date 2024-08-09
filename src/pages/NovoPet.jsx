@@ -63,7 +63,7 @@ function NovoPet() {
             type="text"
             id="tipo"
             className="form-control"
-            {...register("tipo", { required: true, maxLength: 200 })}
+            {...register("raca", { required: true, maxLength: 200 })}
           />
           {errors.tipo && (
             <small className="text-danger">O tipo é inválido!</small>

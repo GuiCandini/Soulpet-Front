@@ -6,7 +6,7 @@ import Loader from "../components/Loader";
 import toast from "react-hot-toast";
 
 function Pets() {
-  const [pets, setPets] = useState(null);
+  const [pets, setPets] = useState([]);
 
   function carregarPets() {
     getPets().then((dados) => {
@@ -52,7 +52,7 @@ function Pets() {
               return (
                 <tr key={pet.id}>
                   <td>{pet.nome}</td>
-                  <td>{pet.tipo}</td>
+                  <td>{pet.raca}</td>
                   <td>{pet.porte}</td>
                   <td>
                     {pet.dataNasc

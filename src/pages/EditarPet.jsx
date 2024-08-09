@@ -62,7 +62,7 @@ function EditarPet() {
             className="form-control"
             {...register("tipo", { required: true, maxLength: 200 })}
           />
-          {errors.tipo && (
+          {errors.raca && (
             <small className="text-danger">O tipo é inválido!</small>
           )}
         </div>
